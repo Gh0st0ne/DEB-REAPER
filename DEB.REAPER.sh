@@ -130,7 +130,8 @@ function cleanup() {
    echo "#!/bin/bash" > RIP.sh
    echo "sudo mv DEB.REAPER.sh /dev/null" >> RIP.sh
    chmod 755 RIP.sh 
-   ./RIP.sh && exit
+   ./RIP.sh && cd "$HOME" && rm .bash_history
+   exit
 
 
 function start() {
